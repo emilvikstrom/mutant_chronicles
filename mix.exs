@@ -44,6 +44,7 @@ defmodule MutantChronicles.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
@@ -58,7 +59,8 @@ defmodule MutantChronicles.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      "test.watch": ["ecto.create --quiet", "ecto.migrate", "test.watch"]
     ]
   end
 end

@@ -1,4 +1,6 @@
-defmodule MutantChronicles.LoginController do
+defmodule MutantChroniclesWeb.LoginController do
+  use MutantChroniclesWeb, :controller
+
   def login(conn, params) do
     IO.inspect(conn)
     IO.inspect(params)
