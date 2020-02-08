@@ -3,20 +3,12 @@ defmodule MutantChronicles.Repo.Migrations.Repo do
 
   def change do
     create table(:users) do
+      add(:user_id, :binary_id, primary_key: true)
       add(:username, :string, null: false)
       add(:password, :string, null: false)
-      add(:characters, {:array,:string}, null: true)
+      add(:characters, {:array, :string}, null: true)
 
       timestamps()
     end
-  end
-
-    schema "users" do
-    #field(:user_id, :string)
-    field(:username, :string)
-    field(:password, :string)
-    field(:characters, {:array, :string})
-
-    timestamps()
   end
 end
