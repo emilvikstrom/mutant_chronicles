@@ -12,15 +12,14 @@ defmodule MutantChronicles.UsersTest do
       assert {:ok, %{user_id: id}} =
         User.new_user(%{"username" => "emil", "password" => "hello"})
       User.read(id)
-      assert %User{user_id: id,username: "emil", characters: []} =
+      assert %User{user_id: id, username: "emil", characters: []} =
         User.read(id)
     end
 
     test "verify hashed password" do
-      {:ok, %{user_id: id}} =
-        User.new_user(%{"username" => "emil", "password" => "hello"})
+      {:ok, %{user_id: id}} = User.new_user(%{"username" => "emil", "password" => "hello"})
       %User{password: password} = User.read(id)
-      assert password == :crypto.hash(:sha256, "hello") |> Base.encode16
+      assert password == :crypto.hash(:sha256, "hello") |> Base.encode16()
     end
   end
 end
