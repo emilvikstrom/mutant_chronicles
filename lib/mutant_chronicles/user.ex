@@ -21,7 +21,7 @@ defmodule MutantChronicles.User do
 
       %__MODULE__{user_id: Ecto.UUID.generate(),
                   username: username,
-                  password: password}
+                  password: :crypto.hash(:sha256, password) |> Base.encode16}
       |> IO.inspect()
       |> Repo.insert()
   end
