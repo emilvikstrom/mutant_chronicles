@@ -16,6 +16,17 @@ defmodule MutantChronicles.UsersTest do
         User.read(id)
     end
 
+    test "insert multiple instanses of same user" do
+      assert {:ok, %{user_id: ref_id}} =
+        User.new_user(%{"username" => "emil", "password" => "hello"})
+
+      assert {:error, changeset}
+        = User.new_user(%{"username" => "emil", "password" => "hello"})
+
+
+
+    end
+
     test "verify hashed password" do
       {:ok, %{user_id: id}} = User.new_user(%{"username" => "emil", "password" => "hello"})
       %User{password: password} = User.read(id)

@@ -3,8 +3,8 @@ defmodule MutantChronicles.User do
   import Ecto.Changeset
   alias MutantChronicles.Repo
 
-  #@primary_key {:user_id, :binary_id, autogenerate: true}
-  #@primary_key {:username, :string, ${}}
+  # @primary_key {:user_id, :binary_id, autogenerate: true}
+  # @primary_key {:username, :string, ${}}
   schema "users" do
     field(:username, :string, null: false)
     field(:user_id, :binary_id, null: false)
@@ -14,20 +14,21 @@ defmodule MutantChronicles.User do
     timestamps()
   end
 
-  def new_user(%{"username" => username, "password" => password}) do
-    %__MODULE__{
+  def new_user(%{"username" => username, "password" => password} = data) do
+    data = %{
       user_id: Ecto.UUID.generate(),
       username: username,
-      password: :crypto.hash(:sha256, password) |> Base.encode16()
-    }
+      password: :crypto.hash(:sha256, password) |> Base.encode16()}
+    cast(%__MODULE__{},data, [:user_id, :username, :password])
+    |> unique_constraint(:username, name: "users_username_index")
     |> Repo.insert()
   end
 
-
   def read(credentials) when is_map(credentials) do
-    #credentials = %{username: username, password: password}
+    # credentials = %{username: username, password: password}
     Repo.get_by(__MODULE__, credentials)
   end
+
   def read(uuid) do
     Repo.get_by(__MODULE__, %{user_id: uuid})
   end

@@ -4,7 +4,7 @@ use Mix.Config
 config :mutant_chronicles, MutantChronicles.Repo,
   username: "postgres",
   password: "postgres",
-  database: "mutant_chronicles_dev",
+  database: "mutant_chronicles_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 

@@ -12,20 +12,25 @@ defmodule MutantChroniclesWeb.LoginController do
       {:error, _reason} ->
         conn
         |> put_status(400)
-        |> json(%{"error" => "something went wrong"})
+        |> json(%{"error" => "username already taken"})
     end
   end
 
-    def login(conn, %{"username" => username, "password" => password}) do
-      credentials = %{username: username,
-                      password: :crypto.hash(:sha256, password)
-                      |> Base.encode16}
-      case User.read(credentials) do
-        %User{} -> conn |> put_status(200) |> json(%{})
-        nil -> conn |> put_status(400) |> json(%{"error" => "wrong credentials"})
-      end
+  def login(conn, %{"username" => username, "password" => password}) do
+    credentials = %{
+      username: username,
+      password:
+        :crypto.hash(:sha256, password)
+        |> Base.encode16()
+    }
+
+    case User.read(credentials) do
+      %User{} -> conn |> put_status(200) |> json(%{})
+      nil -> conn |> put_status(400) |> json(%{"error" => "wrong credentials"})
+    end
   end
-  def login(conn,_params) do
+
+  def login(conn, _params) do
     conn
     |> put_status(400)
     |> json(%{"error" => "missing username or password"})
