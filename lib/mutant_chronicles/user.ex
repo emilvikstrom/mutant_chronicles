@@ -14,7 +14,7 @@ defmodule MutantChronicles.User do
     timestamps()
   end
 
-  def new_user(%{"username" => username, "password" => password} = data) do
+  def new_user(%{"username" => username, "password" => password}) do
     data = %{
       user_id: Ecto.UUID.generate(),
       username: username,
