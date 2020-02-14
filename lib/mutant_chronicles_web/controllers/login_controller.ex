@@ -1,6 +1,6 @@
 defmodule MutantChroniclesWeb.LoginController do
   use MutantChroniclesWeb, :controller
-  alias MutantChronicles.User
+  alias MutantChronicles.{User, Token}
 
   def create(conn, params) do
     case User.new_user(params) do
@@ -25,8 +25,12 @@ defmodule MutantChroniclesWeb.LoginController do
     }
 
     case User.read(credentials) do
-      %User{} -> conn |> put_status(200) |> json(%{})
-      nil -> conn |> put_status(400) |> json(%{"error" => "wrong credentials"})
+      nil ->
+        conn |> put_status(400) |> json(%{"error" => "wrong credentials"})
+
+      user ->
+        {:ok, token, _} = Token.create_token(%{user_id: user.user_id})
+        conn |> put_status(200) |> json(%{"token" => token})
     end
   end
 

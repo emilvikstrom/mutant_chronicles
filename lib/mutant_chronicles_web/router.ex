@@ -19,6 +19,7 @@ defmodule MutantChroniclesWeb.Router do
     get "/", PageController, :index
     post "/create", LoginController, :create
     post "/login", LoginController, :login
+    get "/user", UserController, :get
   end
 
   # Other scopes may use custom stacks.

@@ -18,8 +18,10 @@ defmodule MutantChronicles.User do
     data = %{
       user_id: Ecto.UUID.generate(),
       username: username,
-      password: :crypto.hash(:sha256, password) |> Base.encode16()}
-    cast(%__MODULE__{},data, [:user_id, :username, :password])
+      password: :crypto.hash(:sha256, password) |> Base.encode16()
+    }
+
+    cast(%__MODULE__{}, data, [:user_id, :username, :password])
     |> unique_constraint(:username, name: "users_username_index")
     |> Repo.insert()
   end
