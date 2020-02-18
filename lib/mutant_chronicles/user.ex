@@ -26,6 +26,11 @@ defmodule MutantChronicles.User do
     |> Repo.insert()
   end
 
+  # def new_character
+  def insert_character(user_id, character) do
+    :ok
+  end
+
   def read(credentials) when is_map(credentials) do
     # credentials = %{username: username, password: password}
     Repo.get_by(__MODULE__, credentials)
