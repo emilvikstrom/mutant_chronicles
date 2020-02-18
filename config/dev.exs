@@ -27,6 +27,11 @@ config :mutant_chronicles, MutantChroniclesWeb.Endpoint,
       "development",
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__)
+    ],
+    live_reload: [
+      patterns: [
+        ~r{lib/my_app_web/live_view/.*(ex)$}
+      ]
     ]
   ]
 

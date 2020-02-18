@@ -1,12 +1,22 @@
 defmodule MutantChroniclesWeb.Router do
   use MutantChroniclesWeb, :router
+  import Phoenix.LiveView.Router
+  import Phoenix.LiveView
 
   pipeline :browser do
     plug :accepts, ["html", "json"]
     plug :fetch_session
     plug :fetch_flash
-    # plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :browser_live do
+    plug :accepts, ["html", "json"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    # plug Phoenix.LiveView.Flash
   end
 
   pipeline :api do
@@ -20,6 +30,12 @@ defmodule MutantChroniclesWeb.Router do
     post "/create", LoginController, :create
     post "/login", LoginController, :login
     get "/user", UserController, :get
+    post "/user/character", UserController, :new_character
+  end
+
+  scope "/test", MutantChroniclesWeb do
+    pipe_through :browser_live
+    live "/thermostat", LoginLive
   end
 
   # Other scopes may use custom stacks.
