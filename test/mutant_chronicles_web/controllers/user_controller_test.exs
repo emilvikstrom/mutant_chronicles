@@ -2,6 +2,7 @@ defmodule MutantChroniclesWeb.UserControllerTest do
   use MutantChroniclesWeb.ConnCase
   alias MutantChronicles.User
 
+  @tag :pending
   test "get user data", %{conn: conn} do
     create_test_user()
     token = get_test_token(conn)
@@ -14,6 +15,7 @@ defmodule MutantChroniclesWeb.UserControllerTest do
     assert json_response(response, 200) == %{"username" => "emil", "characters" => []}
   end
 
+  @tag :pending
   test "get user data with no header", %{conn: _conn} do
     create_test_user()
 
@@ -24,6 +26,7 @@ defmodule MutantChroniclesWeb.UserControllerTest do
     assert json_response(response, 401)
   end
 
+  @tag :pending
   test "get user data with invalid token", %{conn: _conn} do
     create_test_user()
 
@@ -35,6 +38,7 @@ defmodule MutantChroniclesWeb.UserControllerTest do
     assert json_response(response, 401)
   end
 
+  @tag :pending
   test "post and retrieve a character", %{conn: conn} do
     create_test_user()
     token = get_test_token(conn)
