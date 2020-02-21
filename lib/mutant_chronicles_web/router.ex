@@ -31,12 +31,7 @@ defmodule MutantChroniclesWeb.Router do
     post "/login", LoginController, :login
     get "/user", UserController, :get
     post "/user/character", UserController, :new_character
-  end
-
-  scope "/test", MutantChroniclesWeb do
-    pipe_through :browser_live
-    live "/thermostat", LoginLive
-  end
+end
 
   # Other scopes may use custom stacks.
   # scope "/api", MutantChroniclesWeb do

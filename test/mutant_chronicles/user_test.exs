@@ -9,16 +9,22 @@ defmodule MutantChronicles.UsersTest do
 
   describe "basic usage" do
     test "insert and retreive a user" do
-      assert {:ok, %{user_id: id}} = User.new_user(%{"username" => "emil", "password" => "hello"})
+      assert {:ok, %{user_id: id}} =
+        User.new_user(%{"username" => "emil", "password" => "hello"})
       User.read(id)
-      assert %User{user_id: id, username: "emil", characters: []} = User.read(id)
+      assert %User{user_id: id, username: "emil", characters: []} =
+        User.read(id)
     end
 
     test "insert multiple instanses of same user" do
       assert {:ok, %{user_id: ref_id}} =
-               User.new_user(%{"username" => "emil", "password" => "hello"})
+        User.new_user(%{"username" => "emil", "password" => "hello"})
 
-      assert {:error, changeset} = User.new_user(%{"username" => "emil", "password" => "hello"})
+      assert {:error, changeset}
+        = User.new_user(%{"username" => "emil", "password" => "hello"})
+
+
+
     end
 
     test "verify hashed password" do
