@@ -1,7 +1,5 @@
 defmodule MutantChroniclesWeb.Router do
   use MutantChroniclesWeb, :router
-  import Phoenix.LiveView.Router
-  import Phoenix.LiveView
 
   pipeline :browser do
     plug :accepts, ["html", "json"]
