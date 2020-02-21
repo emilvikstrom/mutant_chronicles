@@ -16,12 +16,10 @@ defmodule MutantChroniclesWeb.LoginControllerTest do
 
   test "login user", %{conn: conn} do
 
-    {:ok, %User{user_id: userId}} =
-      User.new_user(%{"username" => "emil", "password" => "password"})
+    User.new_user(%{"username" => "emil", "password" => "password"})
 
     conn = post(conn, "/login", %{"username" => "emil", "password" => "password"})
-    assert %{"token" => token} = json_response(conn, 200)
-    assert {:ok, %{"user_id" => ^userId}} = MutantChronicles.Token.verify_and_validate(token)
+    assert json_response(conn, 200)
 
   end
 end

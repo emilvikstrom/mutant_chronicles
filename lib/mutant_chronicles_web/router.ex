@@ -27,9 +27,8 @@ defmodule MutantChroniclesWeb.Router do
     get "/", PageController, :index
     post "/create", LoginController, :create
     post "/login", LoginController, :login
-    get "/user", UserController, :get
-    post "/user/character", UserController, :new_character
-end
+
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", MutantChroniclesWeb do
