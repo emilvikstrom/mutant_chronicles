@@ -1,6 +1,7 @@
 defmodule MutantChroniclesWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :mutant_chronicles
 
+  socket "/live", Phoenix.LiveView.Socket
 
   socket "/socket", MutantChroniclesWeb.UserSocket,
     websocket: true,

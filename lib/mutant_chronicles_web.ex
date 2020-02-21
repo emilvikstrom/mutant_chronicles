@@ -24,6 +24,8 @@ defmodule MutantChroniclesWeb do
       import Plug.Conn
       import MutantChroniclesWeb.Gettext
       alias MutantChroniclesWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Controller
+
     end
   end
 
@@ -41,8 +43,8 @@ defmodule MutantChroniclesWeb do
 
       import MutantChroniclesWeb.ErrorHelpers
       import MutantChroniclesWeb.Gettext
-      # import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
       alias MutantChroniclesWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Helpers
     end
   end
 
@@ -51,7 +53,7 @@ defmodule MutantChroniclesWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
-      # import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
+      import Phoenix.LiveView.Router
     end
   end
 

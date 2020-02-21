@@ -16,7 +16,7 @@ config :mutant_chronicles, MutantChroniclesWeb.Endpoint,
   secret_key_base: "1gJO0xzM0UeXUG7cIWDldzFCYy02XsQJvUp4QMY7mVcqe3n6UDb0oIWmEAs8HyVM",
   render_errors: [view: MutantChroniclesWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: MutantChronicles.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "C2wM21qFkMHSqjA/vv7jysN6bUpHr+AI"]
+  live_view: [signing_salt: "eIuSj9fbbRULmtrdwTJMIArN+AIeuOMP"]
 
 # Configures Elixir's Logger
 config :logger, :console,

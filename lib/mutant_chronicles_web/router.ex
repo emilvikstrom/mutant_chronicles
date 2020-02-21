@@ -5,6 +5,8 @@ defmodule MutantChroniclesWeb.Router do
     plug :accepts, ["html", "json"]
     plug :fetch_session
     plug :fetch_flash
+    plug :protect_from_forgery
+    plug Phoenix.LiveView.Flash
     plug :put_secure_browser_headers
   end
 
@@ -27,6 +29,7 @@ defmodule MutantChroniclesWeb.Router do
     get "/", PageController, :index
     post "/create", LoginController, :create
     post "/login", LoginController, :login
+    live "/simple",SimpleLive
 
   end
 
